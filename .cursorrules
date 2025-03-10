@@ -1,0 +1,150 @@
+# Cursor Rules para o Projeto IPTV Player
+
+# Configurações de Formatação
+formatting:
+  indentSize: 2
+  indentStyle: space
+  trimTrailingWhitespace: true
+  insertFinalNewline: true
+  singleQuote: true
+  semi: true
+  bracketSpacing: true
+  arrowParens: always
+  jsxBracketSameLine: false
+
+# Regras para Evitar Duplicação
+duplication:
+  # Padrões para detectar código duplicado
+  thresholds:
+    similar: 0.85  # 85% de similaridade é considerado duplicação
+    minLines: 5    # Mínimo de 5 linhas para considerar duplicação
+  ignore:
+    - node_modules/**
+    - dist/**
+    - build/**
+    - *.test.tsx
+    - *.test.ts
+
+# Marcadores de Ambiente
+environments:
+  development:
+    prefix: "DEV:"
+    tag: "// @env:dev"
+  production:
+    prefix: "PROD:"
+    tag: "// @env:prod"
+  testing:
+    prefix: "TEST:"
+    tag: "// @env:test"
+
+# Convenções de Nomenclatura
+naming:
+  components:
+    pattern: "^[A-Z][a-zA-Z0-9]*$"  # PascalCase para componentes
+    examples: ["LoginForm", "ChannelList", "EPGGuide"]
+  hooks:
+    pattern: "^use[A-Z][a-zA-Z0-9]*$"  # useXxx para hooks
+    examples: ["useAuth", "useChannels", "useEPG"]
+  contexts:
+    pattern: "^[A-Z][a-zA-Z0-9]*Context$"  # XxxContext para contextos
+    examples: ["AuthContext", "ChannelContext"]
+  interfaces:
+    pattern: "^I[A-Z][a-zA-Z0-9]*$|^[A-Z][a-zA-Z0-9]*$"  # IXxx ou Xxx para interfaces
+    examples: ["IChannel", "Channel", "IEPGProgram"]
+  types:
+    pattern: "^T[A-Z][a-zA-Z0-9]*$|^[A-Z][a-zA-Z0-9]*$"  # TXxx ou Xxx para tipos
+    examples: ["TLoginProps", "ChannelProps"]
+  constants:
+    pattern: "^[A-Z][A-Z0-9_]*$"  # SCREAMING_SNAKE_CASE para constantes
+    examples: ["API_URL", "DEFAULT_SERVERS"]
+  variables:
+    pattern: "^[a-z][a-zA-Z0-9]*$"  # camelCase para variáveis
+    examples: ["username", "channelList"]
+
+# Estrutura de Importações
+imports:
+  order:
+    - react
+    - external libraries
+    - components
+    - hooks
+    - utils
+    - styles
+  grouping:
+    react: ["react", "react-dom", "react-*"]
+    components: ["./components/", "../components/"]
+    hooks: ["./hooks/", "../hooks/", "./lib/use*", "../lib/use*"]
+    utils: ["./utils/", "../utils/", "./lib/", "../lib/"]
+    styles: ["./styles/", "../styles/", "*.css", "*.scss"]
+
+# Convenções de Comentários
+comments:
+  section:
+    start: "// #region"
+    end: "// #endregion"
+  todo:
+    pattern: "// TODO:"
+  fixme:
+    pattern: "// FIXME:"
+  important:
+    pattern: "// IMPORTANT:"
+  feature:
+    pattern: "// FEATURE:"
+  component:
+    pattern: "// Component:"
+  hook:
+    pattern: "// Hook:"
+  service:
+    pattern: "// Service:"
+  model:
+    pattern: "// Model:"
+
+# Convenções para Componentes React
+react:
+  componentPattern: |
+    // Component: %NAME%
+    // @env:%ENVIRONMENT%
+    // Description: %DESCRIPTION%
+    import React from 'react';
+    
+    interface %NAME%Props {
+      // Props here
+    }
+    
+    export function %NAME%({ /* props destructuring */ }: %NAME%Props) {
+      // Hooks
+      
+      // Handlers
+      
+      return (
+        // JSX
+      );
+    }
+  
+  hookPattern: |
+    // Hook: %NAME%
+    // @env:%ENVIRONMENT%
+    // Description: %DESCRIPTION%
+    import { useState, useEffect } from 'react';
+    
+    export function %NAME%() {
+      // State and effects
+      
+      // Handlers and logic
+      
+      return {
+        // Return values
+      };
+    }
+
+# Ignorar Arquivos/Diretórios
+ignore:
+  - node_modules/**
+  - dist/**
+  - build/**
+  - .git/**
+  - .vscode/**
+  - .idea/**
+  - *.log
+  - *.lock
+  - *.md 
