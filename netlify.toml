@@ -8,6 +8,8 @@
   to = "/.netlify/functions/proxy"
   status = 200
   force = true
+  methods = ["GET", "POST", "OPTIONS"]
+  headers = {Access-Control-Allow-Origin = "*"}
 
 [[redirects]]
   from = "/*"
@@ -16,6 +18,7 @@
 
 [functions]
   node_bundler = "esbuild"
+  included_files = ["netlify/functions/**"]
 
 [build.environment]
   NODE_VERSION = "18" 

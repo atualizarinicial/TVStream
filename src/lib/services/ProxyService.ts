@@ -20,7 +20,7 @@ interface ProxyResponse<T> {
 
 // #region Constants
 const DEFAULT_CONFIG: ProxyConfig = {
-  proxyUrl: '/api/proxy',
+  proxyUrl: '/.netlify/functions/proxy',
   timeout: 10000,
   retries: 2
 };
