@@ -116,7 +116,10 @@ export class AuthService {
 
       // Em produção, tenta autenticar no servidor
       try {
-        const proxyUrl = `/api/proxy`;
+        const isProduction = window.location.hostname !== 'localhost';
+        const proxyUrl = isProduction ? `/.netlify/functions/proxy` : `/api/proxy`;
+        console.log(`Auth using proxy URL: ${proxyUrl}`);
+        
         const response = await axios.post(proxyUrl, {
           targetUrl: `${server}/login`,
           method: 'POST',

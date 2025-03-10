@@ -19,8 +19,10 @@ interface ProxyResponse<T> {
 // #endregion
 
 // #region Constants
+const isProduction = window.location.hostname !== 'localhost';
+
 const DEFAULT_CONFIG: ProxyConfig = {
-  proxyUrl: '/.netlify/functions/proxy',
+  proxyUrl: isProduction ? '/.netlify/functions/proxy' : '/api/proxy',
   timeout: 10000,
   retries: 2
 };
@@ -36,12 +38,17 @@ export class ProxyService {
   // #region Constructor
   constructor(config: Partial<ProxyConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
+    console.log('ProxyService initialized with config:', this.config);
+    console.log('Environment:', isProduction ? 'Production' : 'Development');
   }
   // #endregion
 
   // #region Public Methods
   public async fetchWithProxy<T>(url: string, config: AxiosRequestConfig = {}): Promise<ProxyResponse<T>> {
     let lastError: Error | null = null;
+    
+    console.log(`Fetching with proxy: ${url}`);
+    console.log(`Using proxy URL: ${this.config.proxyUrl}`);
     
     for (let i = 0; i < this.maxRetries; i++) {
       try {
