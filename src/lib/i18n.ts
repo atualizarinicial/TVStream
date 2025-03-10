@@ -5,7 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   pt: {
     translation: {
-      'login.title': 'Bem-vindo ao IPTV Pro',
+      'login.title': 'Bem-vindo ao IPTV STREAM TV',
       'login.subtitle': 'Acesse milhares de canais, filmes e séries',
       'login.server': 'Selecione o servidor',
       'login.username': 'Usuário',
